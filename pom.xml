@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>dk.sds.hjemmemonitoreringdeling</groupId>
+	<artifactId>eksempel-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+        <packaging>pom</packaging>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.1.RELEASE</version>
+	</parent>
+	<repositories>
+		<repository>
+			<id>NSP Nexus</id>
+			<url>https://nexus.nspop.dk/nexus/content/groups/public</url>
+		</repository>
+	</repositories>
+	<properties>
+		<java.source-version>1.8</java.source-version>
+		<java.target-version>1.8</java.target-version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+                <cda-builder-version>f8788791da5db0968f824148ceb07a7e873f1e0c</cda-builder-version>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>dk.s4.hl7</groupId>
+				<artifactId>builders</artifactId>
+				<version>${cda-builder-version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+        <modules>
+	       <module>4s-cda-builder-dependency</module>
+           <module>eksempel</module>
+        </modules>
+</project>
