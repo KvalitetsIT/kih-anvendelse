@@ -6,6 +6,7 @@ Først gennemgåes de centrale koncepter i forhold til dokumentdeling dvs. de gr
 
 For nuværende er følgende typer af CDA dokumenter tilgængelig som fuldt kørende eksempler i nærværende kildekode:
 * Personal Health Monitoring Report (PHMR) på dansk hjemmemonitorering
+* Questionnaire Form Definition Document (QFDD) på dansk spørgeskema
 
 
 
