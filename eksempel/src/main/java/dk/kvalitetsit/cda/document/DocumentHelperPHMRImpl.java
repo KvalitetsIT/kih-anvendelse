@@ -14,21 +14,21 @@ import dk.s4.hl7.cda.model.phmr.PHMRDocument;
 
 public class DocumentHelperPHMRImpl implements DocumentHelper {
 	
-	private DocumentFactoryPHMRImpl documentFactoryPhmrImpl;
+	private DocumentFactoryPHMR documentFactoryPhmr;
 	private static PHMRXmlCodec codec = new PHMRXmlCodec();
 	private static Code PHMR_CODE = new Code(Loinc.PHMR_CODE, new LocalizedString(Loinc.PMHR_DISPLAYNAME), Loinc.OID);
 	
 	public DocumentHelperPHMRImpl() {
-		documentFactoryPhmrImpl = new DocumentFactoryPHMRImpl();
+		documentFactoryPhmr = new DocumentFactoryPHMR();
 	}
 	
 	public String createDocumentAsXML(String externalIdForNewDocument, Date from, Date to) {
 		
-		if (documentFactoryPhmrImpl == null) {
-			documentFactoryPhmrImpl = new DocumentFactoryPHMRImpl();
+		if (documentFactoryPhmr == null) {
+			documentFactoryPhmr = new DocumentFactoryPHMR();
 		}
 		
-		PHMRDocument phmrDocument = documentFactoryPhmrImpl.defineAsCDA(externalIdForNewDocument, from, to);
+		PHMRDocument phmrDocument = documentFactoryPhmr.defineAsCDA(externalIdForNewDocument, from, to);
 		String xmlDocument = codec.encode(phmrDocument);
 		return xmlDocument;
 	}

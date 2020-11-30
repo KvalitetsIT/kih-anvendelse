@@ -23,15 +23,13 @@ import dk.s4.hl7.cda.model.qfdd.QFDDHelpText.QFDDHelpTextBuilder;
 import dk.s4.hl7.cda.model.qfdd.QFDDMultipleChoiceQuestion.QFDDMultipleChoiceQuestionBuilder;
 import dk.s4.hl7.cda.model.qfdd.QFDDPrecondition;
 import dk.s4.hl7.cda.model.qfdd.QFDDPrecondition.QFDDPreconditionBuilder;
-import dk.s4.hl7.cda.model.qfdd.QFDDPreconditionGroup.GroupType;
-import dk.s4.hl7.cda.model.qfdd.QFDDPreconditionGroup.QFDDPreconditionGroupBuilder;
 import dk.s4.hl7.cda.model.qfdd.QFDDQuestion;
 import dk.s4.hl7.cda.model.qfdd.QFDDTextQuestion;
 import dk.s4.hl7.cda.model.qfdd.QFDDTextQuestion.QFDDTextQuestionBuilder;
 import dk.s4.hl7.cda.model.util.DateUtil;
 
-public class DocumentFactoryQFDDImpl {
-//TODO: consider more types and better questions
+public class DocumentFactoryQFDD {
+//TODO: consider more question types
 	public QFDDDocument defineAsCDA(String identification, Date from, Date to) throws IOException, URISyntaxException {
 		// Examples are from builder/parser. More examples of other type of questions
 		// can be found there.
@@ -43,8 +41,6 @@ public class DocumentFactoryQFDDImpl {
 
 		Section<QFDDQuestion> section = new Section<QFDDQuestion>("Indledning", text);
 		section.addQuestionnaireEntity(simpleQuestionMultipleChoice());
-		section.addQuestionnaireEntity(
-				simpleQuestionWithReferenceAndPreconditionMultipleChoice(true, groupedPrecondition()));
 		section.addQuestionnaireEntity(fullQuestionMultipleChoice(true, simplePrecondition()));
 		cda.addSection(section);
 
@@ -93,23 +89,6 @@ public class DocumentFactoryQFDDImpl {
 				.setMinimum("10").setValueType(IntervalType.IVL_INT).build()).build();
 	}
 
-	private QFDDPrecondition groupedPrecondition() {
-		CodedValue questionCodedValue1 = new CodedValue("173.Q", "1.2.208.176.1.5", "173.Q", "Sundhedsdatastyrelsen");
-		CodedValue questionCodedValueAnswer1 = new CodedValue("173.A2", "173.A2");
-		CodedValue questionCodedValue2 = new CodedValue("173.Q", "1.2.208.176.1.5", "173.Q", "Sundhedsdatastyrelsen");
-		CodedValue questionCodedValueAnswer2 = new CodedValue("173.A3", "173.A3");
-		return new QFDDPreconditionBuilder(new QFDDPreconditionGroupBuilder().setGroupType(GroupType.AtLeastOneTrue)
-				.setId(new IDBuilder().setRoot("1.2.208.176.7.3.2").setExtension("2062.C2")
-						.setAuthorityName("Sundhedsdatastyrelsen").build())
-				.addPrecondition(new QFDDPreconditionBuilder(
-						new QFDDCriterionBuilder(questionCodedValue1).setAnswer(questionCodedValueAnswer1).build())
-								.build())
-				.addPrecondition(new QFDDPreconditionBuilder(
-						new QFDDCriterionBuilder(questionCodedValue2).setAnswer(questionCodedValueAnswer2).build())
-								.build())
-				.build()).build();
-	}
-
 	private QFDDQuestion simpleQuestionMultipleChoice() throws IOException, URISyntaxException {
 		return new QFDDMultipleChoiceQuestionBuilder().setInterval(1, 2)
 				.setCodeValue(new CodedValue("value1", "value2", "value3", "value4"))
@@ -118,21 +97,6 @@ public class DocumentFactoryQFDDImpl {
 				.addAnswerOption("A2", "Some-ChoiceDomain-OID", "Quite a bit Limited", "Some-CodeSystem-Name")
 				.addAnswerOption("A3", "Some-ChoiceDomain-OID", "Moderately Limited", "Some-CodeSystem-Name")
 				.setQuestion("question").build();
-	}
-
-	private QFDDQuestion simpleQuestionWithReferenceAndPreconditionMultipleChoice(boolean includeAssociatedText,
-			QFDDPrecondition qfddPrecondition) throws IOException, URISyntaxException {
-		CodedValue questionCodedValue = new CodedValue("value1", "value2", "value3", "value4");
-		return new QFDDMultipleChoiceQuestionBuilder().setInterval(0, 2).setCodeValue(questionCodedValue)
-				.setId(MedCom.createId("idExtension1"))
-				.addAnswerOption("A1", "Some-ChoiceDomain-OID", "Extremely Limited", "Some-CodeSystem-Name")
-				.addAnswerOption("A2", "Some-ChoiceDomain-OID", "Quite a bit Limited", "Some-CodeSystem-Name")
-				.addAnswerOption("A3", "Some-ChoiceDomain-OID", "Moderately Limited", "Some-CodeSystem-Name")
-				.setQuestion("question")
-				.addPrecondition(new QFDDPreconditionBuilder(new QFDDCriterionBuilder(questionCodedValue)
-						.setMaximum("20").setMinimum("0").setValueType(IntervalType.IVL_INT).build()).build())
-				.setAssociatedTextQuestion(createAssociatedTextQuestion(includeAssociatedText, qfddPrecondition))
-				.build();
 	}
 
 	private QFDDQuestion fullQuestionMultipleChoice(boolean includeAssociatedText, QFDDPrecondition qfddPrecondition)

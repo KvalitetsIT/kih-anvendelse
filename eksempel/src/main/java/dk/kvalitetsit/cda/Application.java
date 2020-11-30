@@ -53,7 +53,7 @@ public class Application implements CommandLineRunner {
 			documentProcessor.runCDADocument(new DocumentHelperPHMRImpl());	    	
 	    }
 	    
-	    if (false) { //TODO: enable when kih test is available. Test1 does not allow for documents without patient - so it looks.
+	    if (false) { //TODO: Currently Open XDS does not seem to like the QFDD format.
 			//QFDD = Questionnaire Form Definition Document
 			documentProcessor.runCDADocument(new DocumentHelperQFDDImpl());	    	
 	    }

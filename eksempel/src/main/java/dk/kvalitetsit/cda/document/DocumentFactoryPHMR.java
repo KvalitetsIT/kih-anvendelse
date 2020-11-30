@@ -19,7 +19,7 @@ import dk.s4.hl7.cda.model.phmr.MedicalEquipment;
 import dk.s4.hl7.cda.model.phmr.PHMRDocument;
 import dk.s4.hl7.cda.model.util.DateUtil;
 
-public class DocumentFactoryPHMRImpl {
+public class DocumentFactoryPHMR {
 	
 	public PHMRDocument defineAsCDA(String identification, Date from, Date to) {
 		//Example is from builder/parser: SetupMedcomKOLExample1

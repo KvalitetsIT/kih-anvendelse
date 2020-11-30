@@ -122,11 +122,84 @@ RetrieveDocumentSetResponseType repositoryResponse = iti43PortType.documentRepos
 
 ### Opsætning af udviklingsmiljø
 
+* Kildekoden findes i github: https://github.com/KvalitetsIT/kih-anvendelse
+* Kan bygges med maven og Java 8: mvn clean install 
+
 ### Beskrivelse af kodens struktur
+
+* Hoved applikationen er Application.
+* Herfra kaldes DocumentProcessor, som udfører følgende trin
+  * Søgning af dokumenter
+  * Registrering af nyt dokument
+  * Læsning af dokument
+  * Registrering af dokument som erstatning for det førest
+  * Deprecate af dokument
+* DokumentProccesser arbejder med et DocumentHelper objekt (ex DokumentHelperPHMRImpl), der håndtere de dokumentspecifikke ting. På den måde holdes DokumentProccesser logikken helt generel.
+* DokumentHelperPHMRImpl og de andre implementeringer af DokumentHelper håndterer følgende, som er dokument type specifik
+  * Opretter et dokument vha. DocumentFactory(PHMR)
+  * Bygger det til et XML dokument vha. CDA builder/parseren
+  * Kan oplyse om de dokument type specfikke metadata
+  * Kan returnere oprettelses tidspunktet for dokumentet
+  * Kan opgive dokumentets type kode
+* CdaMetaDataFactory skaber metadata vha. CDA builder/parseren med udgangspunkt i XML dokumentet
+* XdsRequestBuilderService bygger iti kaldene
+* XdsRequestService udfører iti kalene
+* Konfiguration af endspoints gøres i property filerne application.properties og dgws.properties
+
+
+Hvis en ny dokumenttype skal introduceres i eksemplet, oprettes
+* DocumentHelper<dokumenttype>Impl samt
+* DocumentFactory<dokumenttype>
+* Kaldet aktiveres i Application
+
 
 ### Aktivering af kald
 
+* For at udføres faktiske iti kald mod en server køres klassen "Application"
+* De forskellige dokument typer kan slåes fra og til ved at ændre på boolean i if-sætningen foran hver type
+* Kaldene udføres mod de endpoints, som er angivet i application.properties (ITI) og dgws.properties (STS) 
+
 ## Endpoints
+
+I java eksemplet er "kih test" server sat op (den første i listen nedenfor). Der er dog en række andre kombinationer, er kan bruges hvis andre registry og repositories ønskes.
+
+
+| Server         | Type               | Endpoint/Værdi                                                               | NB |
+|----------------|--------------------|------------------------------------------------------------------------------|----| 
+| KIH test       | repositoryuniqueid | 1.2.208.176.43210.8.1.29                                                     |    |
+|                | iti18.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsregistry                     |    |
+|                | iti57.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsregistry/metadataupdate      |    |
+|                | iti43.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsrepository                   |    |
+|                | iti41.endpoint     | http://kih.test.xdsrepositoryb.medcom.dk:8031/kih-iti41/iti41	             |    |
+|                | sts.url (dgws)     | http://test2.ekstern-test.nspop.dk:8080/sts/services/NewSecurityTokenService |    |
+|                | cda viewer         | https://cdaviewer.medcom.dk/cdaviewer-test2/                                 | *1 |
+| KIH uddannelse | repositoryuniqueid | 1.2.208.176.43210.8.1.31                                                     |    |
+|                | iti18.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsregistry                     |    |
+|                | iti57.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsregistry/metadataupdate      |    |
+|                | iti43.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsrepository                   |    |
+|                | iti41.endpoint     | https://kihrepository-sec-udd-npi-nsi.rn.dsdn.dk:8022/kih-iti41/iti41        | *2 |
+|                | sts.url (dgws)     | http://test2.ekstern-test.nspop.dk:8080/sts/services/NewSecurityTokenService |    |
+|                | cda viewer         | https://cdaviewer.medcom.dk/cdaviewer-test2/                                 | *1 |
+| Test 1         | repositoryuniqueid | 1.2.208.176.43210.8.10.11                                                    |    |
+|                | iti18.endpoint     | http://test1-cnsp.ekstern-test.nspop.dk:8080/ddsregistry                     |    |
+|                | iti57.endpoint     | http://test1-cnsp.ekstern-test.nspop.dk:8080/ddsregistry/metadataupdate      |    |
+|                | iti43.endpoint     | http://test1-cnsp.ekstern-test.nspop.dk:8080/ddsrepository                   |    |
+|                | iti41.endpoint     | http://test1-cnsp.ekstern-test.nspop.dk:8080/drs/proxy     	                 |    |
+|                | sts.url (dgws)     | http://test1.ekstern-test.nspop.dk:8080/sts/services/NewSecurityTokenService |    |
+|                | cda viewer         | https://cdaviewer.medcom.dk/cdaviewer-test1/                                 | *1 |
+| Test 2         | repositoryuniqueid | 1.2.208.176.43210.8.20.11 	                                                 |    |
+|                | iti18.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsregistry                     |    |
+|                | iti57.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsregistry/metadataupdate      |    |
+|                | iti43.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsrepository                   |    |
+|                | iti41.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/drs/proxy     	                 |    |
+|                | sts.url (dgws)     | http://test2.ekstern-test.nspop.dk:8080/sts/services/NewSecurityTokenService |    |
+|                | cda viewer         | https://cdaviewer.medcom.dk/cdaviewer-test1/                                 | *1 |
+
+
+*1: kræver login
+*2: kræver SDN aftale 
+
+ 
 
 ## Hjælpeværktøjer
 

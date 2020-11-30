@@ -10,7 +10,7 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import dk.kvalitetsit.cda.document.DocumentFactoryPHMRImpl;
+import dk.kvalitetsit.cda.document.DocumentFactoryPHMR;
 import dk.kvalitetsit.cda.services.CdaMetaDataFactory;
 import dk.s4.hl7.cda.convert.PHMRXmlCodec;
 import dk.s4.hl7.cda.model.phmr.PHMRDocument;
@@ -20,14 +20,14 @@ public class BuilderParserPHMRTest {
 	
 	CdaMetaDataFactory cdaMetaDataFactory;
 
-	DocumentFactoryPHMRImpl phmrDocumentFactory;
+	DocumentFactoryPHMR phmrDocumentFactory;
 	
 	private static PHMRXmlCodec codec = new PHMRXmlCodec();
 
 	@Before
 	public void init() {
 		cdaMetaDataFactory = new CdaMetaDataFactory();
-		phmrDocumentFactory = new DocumentFactoryPHMRImpl();
+		phmrDocumentFactory = new DocumentFactoryPHMR();
 	}
 	
 

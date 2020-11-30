@@ -12,7 +12,7 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import dk.kvalitetsit.cda.document.DocumentFactoryQFDDImpl;
+import dk.kvalitetsit.cda.document.DocumentFactoryQFDD;
 import dk.kvalitetsit.cda.services.CdaMetaDataFactory;
 import dk.s4.hl7.cda.convert.QFDDXmlCodec;
 import dk.s4.hl7.cda.model.qfdd.QFDDDocument;
@@ -22,14 +22,14 @@ public class BuilderParserQFDDTest {
 	
 	CdaMetaDataFactory cdaMetaDataFactory;
 
-	DocumentFactoryQFDDImpl qfddDocumentFactory;
+	DocumentFactoryQFDD qfddDocumentFactory;
 	
 	private static QFDDXmlCodec codec = new QFDDXmlCodec();
 
 	@Before
 	public void init() {
 		cdaMetaDataFactory = new CdaMetaDataFactory();
-		qfddDocumentFactory = new DocumentFactoryQFDDImpl();
+		qfddDocumentFactory = new DocumentFactoryQFDD();
 	}
 	
 
@@ -55,7 +55,7 @@ public class BuilderParserQFDDTest {
 		assertNotNull(qfddDocument.getSections().get(0).getSectionInformation().getTitle());
 		assertEquals("Indledning", qfddDocument.getSections().get(0).getSectionInformation().getTitle());
 		assertNotNull(qfddDocument.getSections().get(0).getQuestionnaireEntities());
-		assertEquals(3, qfddDocument.getSections().get(0).getQuestionnaireEntities().size());
+		assertEquals(2, qfddDocument.getSections().get(0).getQuestionnaireEntities().size());
 		assertNotNull(qfddDocument.getSections().get(0).getQuestionnaireEntities().get(0));
 		assertNotNull(qfddDocument.getSections().get(0).getQuestionnaireEntities().get(0).getQuestion());
 		assertEquals("question", qfddDocument.getSections().get(0).getQuestionnaireEntities().get(0).getQuestion());
@@ -105,7 +105,7 @@ public class BuilderParserQFDDTest {
 		assertNotNull(qfddDocumentParsed.getSections().get(0).getSectionInformation().getTitle());
 		assertEquals("Indledning", qfddDocumentParsed.getSections().get(0).getSectionInformation().getTitle());
 		assertNotNull(qfddDocumentParsed.getSections().get(0).getQuestionnaireEntities());
-		assertEquals(3, qfddDocumentParsed.getSections().get(0).getQuestionnaireEntities().size());
+		assertEquals(2, qfddDocumentParsed.getSections().get(0).getQuestionnaireEntities().size());
 		assertNotNull(qfddDocumentParsed.getSections().get(0).getQuestionnaireEntities().get(0));
 		assertNotNull(qfddDocumentParsed.getSections().get(0).getQuestionnaireEntities().get(0).getQuestion());
 		assertEquals("question", qfddDocumentParsed.getSections().get(0).getQuestionnaireEntities().get(0).getQuestion());
