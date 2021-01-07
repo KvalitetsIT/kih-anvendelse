@@ -49,7 +49,8 @@ public class DocumentFactoryQFDD {
 
 	private QFDDDocument createBaseQFDDDocument(String documentId) {
 		// Define the 'time'
-		Date documentCreationTime = DateUtil.makeDanishDateTime(2014, 0, 13, 10, 0, 0);
+		Date documentCreationTime = DateUtil.makeDanishDateTimeWithTimeZone(2014, 0, 13, 10, 0, 0);
+
 		// Create document
 		QFDDDocument qfddDocument = new QFDDDocument(MedCom.createId(documentId));
 		qfddDocument.setLanguageCode("da-DK");
@@ -77,8 +78,8 @@ public class DocumentFactoryQFDD {
 				.build());
 
 		// 1.4 Define the service period
-		Date from = DateUtil.makeDanishDateTime(2014, 0, 6, 8, 2, 0);
-		Date to = DateUtil.makeDanishDateTime(2014, 0, 10, 8, 15, 0);
+		Date from = DateUtil.makeDanishDateTimeWithTimeZone(2014, 0, 6, 8, 2, 0);
+		Date to = DateUtil.makeDanishDateTimeWithTimeZone(2014, 0, 10, 8, 15, 0);
 		qfddDocument.setDocumentationTimeInterval(from, to);
 		return qfddDocument;
 	}

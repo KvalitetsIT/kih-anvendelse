@@ -25,7 +25,7 @@ public class DocumentFactoryPHMR {
 		//Example is from builder/parser: SetupMedcomKOLExample1
 		
 	    // Define the 'time'
-	    Date documentCreationTime = DateUtil.makeDanishDateTime(2020, 5, 9, 14, 50, 10);
+	    Date documentCreationTime = DateUtil.makeDanishDateTimeWithTimeZone(2020, 5, 9, 14, 50, 10);
 
 	    // 1. Create a PHMR document as a "Green CDA", that is,
 	    // a data structure containing only the dynamic data
@@ -71,7 +71,7 @@ public class DocumentFactoryPHMR {
 	        .setOrganizationIdentity(organization)
 	        .build());
 	    cda.setCustodian(svendborgHjerteMedicinskAfdeling);
-	    Date at1000onJan13 = DateUtil.makeDanishDateTime(2020, 5, 9, 14, 50, 10);
+	    Date at1000onJan13 = DateUtil.makeDanishDateTimeWithTimeZone(2020, 5, 9, 14, 50, 10);
 	    cda.setLegalAuthenticator(new ParticipantBuilder()
 	        .setAddress(DocumentSetup.defineHjerteMedicinskAfdAddress())
 	        .setTelecomList(svendborgHjerteMedicinskAfdeling.getTelecomList())
@@ -106,7 +106,7 @@ public class DocumentFactoryPHMR {
 	        .setRoot(MedCom.ROOT_OID)
 	        .build();
 
-	    Date time1 = DateUtil.makeDanishDateTime(2020, 5, 9, 12, 10, 10);
+	    Date time1 = DateUtil.makeDanishDateTimeWithTimeZone(2020, 5, 9, 12, 10, 10);
 	    DataInputContext context = new DataInputContext(DataInputContext.ProvisionMethod.Electronically,
 	        DataInputContext.PerformerType.Citizen);
 	    Measurement sat1 = NPU.createSaturation("0.97", time1, context, id);
@@ -115,7 +115,7 @@ public class DocumentFactoryPHMR {
 	    // Use the basic methods that allow any legal
 	    // code system to be used but requires all data to be
 	    // provided
-	    Date time2 = DateUtil.makeDanishDateTime(2020, 5, 9, 12, 15, 10);
+	    Date time2 = DateUtil.makeDanishDateTimeWithTimeZone(2020, 5, 9, 12, 15, 10);
 	    Measurement sat2 = new Measurement.MeasurementBuilder(time2, Measurement.Status.COMPLETED)
 	        .setPhysicalQuantity("0.92", UCUM.NA, NPU.SATURATION_CODE, NPU.SATURATION_DISPLAYNAME)
 	        .setContext(context)
@@ -143,7 +143,7 @@ public class DocumentFactoryPHMR {
 	        .build();
 	    cda.addVitalSign(sat2);
 
-	    Date time3 = DateUtil.makeDanishDateTime(2020, 5, 9, 12, 30, 10);
+	    Date time3 = DateUtil.makeDanishDateTimeWithTimeZone(2020, 5, 9, 12, 30, 10);
 	    Measurement sat3 = new Measurement.MeasurementBuilder(time3, Measurement.Status.COMPLETED)
 	        .setPhysicalQuantity("0.95", UCUM.NA, NPU.SATURATION_CODE, NPU.SATURATION_DISPLAYNAME)
 	        .setContext(context)

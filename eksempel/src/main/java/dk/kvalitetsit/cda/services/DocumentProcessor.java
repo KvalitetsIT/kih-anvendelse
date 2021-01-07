@@ -40,8 +40,8 @@ public class DocumentProcessor {
 		String externalIdForNewDocument = generateUUID();
 		
 		// Set from/to time for the document		
-	    Date from = DateUtil.makeDanishDateTime(2019, 0, 6, 8, 2, 0);
-	    Date to = DateUtil.makeDanishDateTime(2019, 0, 10, 8, 15, 0);
+	    Date from = DateUtil.makeDanishDateTimeWithTimeZone(2019, 0, 6, 8, 2, 0);
+	    Date to = DateUtil.makeDanishDateTimeWithTimeZone(2019, 0, 10, 8, 15, 0);
 	    
 	
 		// Create the XML document using the builder/parser
@@ -85,8 +85,8 @@ public class DocumentProcessor {
 		String externalIdForUpdatedDocument = generateUUID();
 		
 		// Updates to the document - new time
-	    Date updatedFrom = DateUtil.makeDanishDateTime(2019, 1, 6, 8, 2, 0);
-	    Date updatedTo = DateUtil.makeDanishDateTime(2019, 1, 10, 8, 15, 0);
+	    Date updatedFrom = DateUtil.makeDanishDateTimeWithTimeZone(2019, 1, 6, 8, 2, 0);
+	    Date updatedTo = DateUtil.makeDanishDateTimeWithTimeZone(2019, 1, 10, 8, 15, 0);
 
 
 		// Create the XML document using the builder/parser

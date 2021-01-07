@@ -36,8 +36,8 @@ public class BuilderParserPHMRTest {
 
 		// Given 
 		String externalIdForDocument = generateUUID();
-		Date from = DateUtil.makeDanishDateTime(2019, 0, 6, 8, 2, 0);
-	    Date to = DateUtil.makeDanishDateTime(2019, 0, 10, 8, 15, 0);
+		Date from = DateUtil.makeDanishDateTimeWithTimeZone(2019, 0, 6, 8, 2, 0);
+	    Date to = DateUtil.makeDanishDateTimeWithTimeZone(2019, 0, 10, 8, 15, 0);
 		
 		// When
 		PHMRDocument phmrDocument = phmrDocumentFactory.defineAsCDA(externalIdForDocument, from, to);
@@ -60,8 +60,8 @@ public class BuilderParserPHMRTest {
 
 		// Given 
 		String externalIdForDocument = generateUUID();
-		Date from = DateUtil.makeDanishDateTime(2019, 0, 6, 8, 2, 0);
-	    Date to = DateUtil.makeDanishDateTime(2019, 0, 10, 8, 15, 0);
+		Date from = DateUtil.makeDanishDateTimeWithTimeZone(2019, 0, 6, 8, 2, 0);
+	    Date to = DateUtil.makeDanishDateTimeWithTimeZone(2019, 0, 10, 8, 15, 0);
 		PHMRDocument phmrDocument = phmrDocumentFactory.defineAsCDA(externalIdForDocument, from, to);
 		
 		// When
@@ -79,8 +79,8 @@ public class BuilderParserPHMRTest {
 
 		// Given 
 		String externalIdForDocument = generateUUID();
-		Date from = DateUtil.makeDanishDateTime(2019, 0, 6, 8, 2, 0);
-	    Date to = DateUtil.makeDanishDateTime(2019, 0, 10, 8, 15, 0);
+		Date from = DateUtil.makeDanishDateTimeWithTimeZone(2019, 0, 6, 8, 2, 0);
+	    Date to = DateUtil.makeDanishDateTimeWithTimeZone(2019, 0, 10, 8, 15, 0);
 		PHMRDocument phmrDocument = phmrDocumentFactory.defineAsCDA(externalIdForDocument, from, to);
 		String xmlDocument = codec.encode(phmrDocument);
 		

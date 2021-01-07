@@ -20,7 +20,7 @@
 		<java.source-version>1.8</java.source-version>
 		<java.target-version>1.8</java.target-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-                <cda-builder-version>f8788791da5db0968f824148ceb07a7e873f1e0c</cda-builder-version>
+                <cda-builder-version>de4db456929348e0ea811c71261a730818790ab5</cda-builder-version>
 	</properties>
 	<build>
 		<plugins>
