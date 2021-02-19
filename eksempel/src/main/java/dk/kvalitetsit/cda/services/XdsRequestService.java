@@ -72,18 +72,20 @@ public class XdsRequestService {
 		return getDocumentsForPatient(citizenId, typeCodes, null, null);
 	}
 	
-	public List<DocumentEntry> getDocumentsForPatient(String citizenId, List<Code> typeCodes, Date start, Date end) throws XdsException {
+	public List<DocumentEntry> getDocumentsForPatient(String citizenId, List<Code> typeCodes, Date start, Date end) {
 		AdhocQueryRequest adhocQueryRequest = xdsRequestBuilderService.buildAdhocQueryRequest(citizenId, typeCodes, start, end);
 		AdhocQueryResponse adhocQueryResponse = iti18PortType.documentRegistryRegistryStoredQuery(adhocQueryRequest);
 		if (adhocQueryResponse.getRegistryErrorList() != null && !adhocQueryResponse.getRegistryErrorList().getRegistryError().isEmpty()) {
-			throw new XdsException(adhocQueryResponse.getRegistryErrorList());
-		} else {
-			QueryResponseTransformer queryResponseTransformer = new QueryResponseTransformer(getEbXmlFactory());
-			EbXMLQueryResponse30 ebXmlresponse = new EbXMLQueryResponse30(adhocQueryResponse);
-			QueryResponse queryResponse = queryResponseTransformer.fromEbXML(ebXmlresponse);
-			List<DocumentEntry> docEntries = queryResponse.getDocumentEntries();
-			return docEntries;
-		}
+			//in case of any errors log them, the search might has gone okay any way. DDS might have some issues with a specific non relevant backend
+			for (RegistryError error : adhocQueryResponse.getRegistryErrorList().getRegistryError()) {
+				System.out.println("Error received from registry [errorCode:"+error.getErrorCode()+", errorValue:"+error.getValue()+ ", codeContext:" + error.getCodeContext() +"]");
+			}
+		} 
+		QueryResponseTransformer queryResponseTransformer = new QueryResponseTransformer(getEbXmlFactory());
+		EbXMLQueryResponse30 ebXmlresponse = new EbXMLQueryResponse30(adhocQueryResponse);
+		QueryResponse queryResponse = queryResponseTransformer.fromEbXML(ebXmlresponse);
+		List<DocumentEntry> docEntries = queryResponse.getDocumentEntries();
+		return docEntries;
 	}
 
 	public DocumentEntry getDocumentEntry(String documentId) throws XdsException {

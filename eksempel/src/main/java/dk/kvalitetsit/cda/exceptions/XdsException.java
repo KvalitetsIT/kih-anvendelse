@@ -17,7 +17,7 @@ public class XdsException extends Exception {
 
 	public XdsException(RegistryErrorList registryErrorList) {
 		for (RegistryError error : registryErrorList.getRegistryError()) {
-			addError("Error received from registry [errorCode:"+error.getErrorCode()+", errorValue:"+error.getValue()+"]");
+			addError("Error received from registry [errorCode:"+error.getErrorCode()+", errorValue:"+error.getValue()+ ", codeContext:" + error.getCodeContext() + "]");
 		}
 	}
 
