@@ -163,7 +163,7 @@ public class CdaMetaDataFactory {
 		
 		//uniqeId
 		if (cdaMetadataDecoded.getId() != null && cdaMetadataDecoded.getId().getExtension() != null && cdaMetadataDecoded.getId().getRoot() != null) {
-			documentMetadata.setUniqueId(cdaMetadataDecoded.getId().getExtension() + "^" + cdaMetadataDecoded.getId().getRoot());
+			documentMetadata.setUniqueId(cdaMetadataDecoded.getId().getRoot() + "^" + cdaMetadataDecoded.getId().getExtension());
 		}
 		
 	}
