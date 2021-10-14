@@ -177,7 +177,7 @@ I java eksemplet er "kih test" server sat op (den første i listen nedenfor). De
 |                | iti18.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsregistry                     |    |
 |                | iti57.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsregistry/metadataupdate      |    |
 |                | iti43.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsrepository                   |    |
-|                | iti41.endpoint     | https://kihrepository-sec-udd-npi-nsi.rn.dsdn.dk:8022/kih-iti41/iti41        | *2 |
+|                | iti41.endpoint     | http://kihrepository-sec-udd-npi-nsi.rn.dsdn.dk:8022/kih-iti41/iti41         | *2 |
 |                | sts.url (dgws)     | http://test2.ekstern-test.nspop.dk:8080/sts/services/NewSecurityTokenService |    |
 |                | cda viewer         | https://cdaviewer.medcom.dk/cdaviewer-test2/                                 | *1 |
 | Test 1         | repositoryuniqueid | 1.2.208.176.43210.8.10.11                                                    |    |
