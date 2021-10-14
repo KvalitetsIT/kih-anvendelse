@@ -193,7 +193,7 @@ I java eksemplet er "kih test" server sat op (den første i listen nedenfor). De
 |                | iti43.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsrepository                   |    |
 |                | iti41.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/drs/proxy     	                 |    |
 |                | sts.url (dgws)     | http://test2.ekstern-test.nspop.dk:8080/sts/services/NewSecurityTokenService |    |
-|                | cda viewer         | https://cdaviewer.medcom.dk/cdaviewer-test1/                                 | *1 |
+|                | cda viewer         | https://cdaviewer.medcom.dk/cdaviewer-test2/                                 | *1 |
 
 
 *1: kræver login
