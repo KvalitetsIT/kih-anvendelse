@@ -168,30 +168,30 @@ I java eksemplet er "kih test" server sat op (den første i listen nedenfor). De
 |----------------|--------------------|------------------------------------------------------------------------------|----| 
 | KIH test       | repositoryuniqueid | 1.2.208.176.43210.8.1.29                                                     |    |
 |                | iti18.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsregistry                     |    |
-|                | iti57.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsregistry/metadataupdate      |    |
+|                | iti57.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/dros/iti57                     |    |
 |                | iti43.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsrepository                   |    |
 |                | iti41.endpoint     | http://kih.test.xdsrepositoryb.medcom.dk:8031/kih-iti41/iti41	             |    |
 |                | sts.url (dgws)     | http://test2.ekstern-test.nspop.dk:8080/sts/services/NewSecurityTokenService |    |
 |                | cda viewer         | https://cdaviewer.medcom.dk/cdaviewer-test2/                                 | *1 |
 | KIH uddannelse | repositoryuniqueid | 1.2.208.176.43210.8.1.31                                                     |    |
 |                | iti18.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsregistry                     |    |
-|                | iti57.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsregistry/metadataupdate      |    |
+|                | iti57.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/dros/iti57                     |    |
 |                | iti43.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsrepository                   |    |
 |                | iti41.endpoint     | http://kihrepository-sec-udd-npi-nsi.rn.dsdn.dk:8022/kih-iti41/iti41         | *2 |
 |                | sts.url (dgws)     | http://test2.ekstern-test.nspop.dk:8080/sts/services/NewSecurityTokenService |    |
 |                | cda viewer         | https://cdaviewer.medcom.dk/cdaviewer-test2/                                 | *1 |
 | Test 1         | repositoryuniqueid | 1.2.208.176.43210.8.10.11                                                    |    |
 |                | iti18.endpoint     | http://test1-cnsp.ekstern-test.nspop.dk:8080/ddsregistry                     |    |
-|                | iti57.endpoint     | http://test1-cnsp.ekstern-test.nspop.dk:8080/ddsregistry/metadataupdate      |    |
+|                | iti57.endpoint     | https://test1-cnsp.ekstern-test.nspop.dk:8443/dros/iti57                     |    |
 |                | iti43.endpoint     | http://test1-cnsp.ekstern-test.nspop.dk:8080/ddsrepository                   |    |
-|                | iti41.endpoint     | http://test1-cnsp.ekstern-test.nspop.dk:8080/drs/proxy     	                 |    |
+|                | iti41.endpoint     | http://test1-cnsp.ekstern-test.nspop.dk:8080/drs/proxy                       |    |
 |                | sts.url (dgws)     | http://test1.ekstern-test.nspop.dk:8080/sts/services/NewSecurityTokenService |    |
 |                | cda viewer         | https://cdaviewer.medcom.dk/cdaviewer-test1/                                 | *1 |
-| Test 2         | repositoryuniqueid | 1.2.208.176.43210.8.20.11 	                                                 |    |
+| Test 2         | repositoryuniqueid | 1.2.208.176.43210.8.20.11 	                                             |    |
 |                | iti18.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsregistry                     |    |
-|                | iti57.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsregistry/metadataupdate      |    |
+|                | iti57.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/dros/iti57                     |    |
 |                | iti43.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsrepository                   |    |
-|                | iti41.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/drs/proxy     	                 |    |
+|                | iti41.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/drs/proxy     	             |    |
 |                | sts.url (dgws)     | http://test2.ekstern-test.nspop.dk:8080/sts/services/NewSecurityTokenService |    |
 |                | cda viewer         | https://cdaviewer.medcom.dk/cdaviewer-test2/                                 | *1 |
 
