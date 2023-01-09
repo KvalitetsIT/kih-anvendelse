@@ -194,7 +194,12 @@ I java eksemplet er "kih test" server sat op (den første i listen nedenfor). De
 |                | iti41.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/drs/proxy     	             |    |
 |                | sts.url (dgws)     | http://test2.ekstern-test.nspop.dk:8080/sts/services/NewSecurityTokenService |    |
 |                | cda viewer         | https://cdaviewer.medcom.dk/cdaviewer-test2/                                 | *1 |
-
+| KIH prod       | repositoryuniqueid | 1.2.208.176.8.1.30                                                           |    |
+|                | iti18.endpoint     | kontakt Medcom/SDS                                                           |    |
+|                | iti57.endpoint     | kontakt Medcom/SDS                                                           |    |
+|                | iti43.endpoint     | kontakt Medcom/SDS                                                           |    |
+|                | iti41.endpoint     | https://kihrepository-sec-npi-nsi.rn.dsdn.dk:8022/kih-iti41/iti41            | *2 |
+|                | sts.url (dgws)     | kontakt Medcom/SDS                                                           |    |
 
 *1: kræver login
 *2: kræver SDN aftale 
