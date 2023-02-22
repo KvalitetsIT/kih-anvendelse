@@ -50,7 +50,7 @@ public class DocumentHelperQFDDImpl implements DocumentHelper {
 		return QFDD_CODE;
 	}	
 	
-	public CdaMetadata createCdaMetadata() {
+	public CdaMetadata createCdaMetadata(String homeCommunityId) {
 		CdaMetadata cdaMetaData = new CdaMetadata();
 		cdaMetaData.setAvailabilityStatus(AvailabilityStatus.APPROVED);
 		cdaMetaData.setObjectType(DocumentEntryType.STABLE);
@@ -59,6 +59,7 @@ public class DocumentHelperQFDDImpl implements DocumentHelper {
 		cdaMetaData.setHealthcareFacilityTypeCode(new dk.kvalitetsit.cda.dto.Code("sundhedscenter","264361005","2.16.840.1.113883.6.96"));
 		cdaMetaData.setPracticeSettingCode(new dk.kvalitetsit.cda.dto.Code("almen medicin", "408443003", "2.16.840.1.113883.6.96"));
 		cdaMetaData.setSubmissionTime(new Date());
+		cdaMetaData.setHomeCommunityId(homeCommunityId);
 		return cdaMetaData;
 	}
 	

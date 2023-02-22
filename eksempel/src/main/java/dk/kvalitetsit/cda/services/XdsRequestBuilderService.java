@@ -241,6 +241,10 @@ public class XdsRequestBuilderService {
 		documentEntry.setUniqueId(extenalDocumentId); 
 
 		documentEntry.setLogicalUuid(documentUuid);
+		
+		if (documentMetadata.getHomeCommunityId() != null) {
+			documentEntry.setHomeCommunityId(documentMetadata.getHomeCommunityId());	
+		}
 
 		Document document = new Document(documentEntry, new DataHandler(new ByteArrayDataSource(documentPayload.getBytes(), documentMetadata.getMimeType())));
 		provideAndRegisterDocumentSet.getDocuments().add(document);
@@ -257,6 +261,7 @@ public class XdsRequestBuilderService {
 		submissionSet.setTitle(new LocalizedString(submissionSetUuid));
 		submissionSet.setAuthor(author);
 		submissionSet.setAvailabilityStatus(documentMetadata.getAvailabilityStatus());
+		submissionSet.setHomeCommunityId(documentEntry.getHomeCommunityId());
 		
 
 		if (documentMetadata.getReportTime() != null) {
@@ -430,6 +435,7 @@ public class XdsRequestBuilderService {
 		RegistryPackageType registryPackage = new RegistryPackageType();
 		registryPackage.setId("SubmissionSet");
 		registryPackage.setObjectType("urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:RegistryPackage");
+		registryPackage.setHome(documentEntry.getHomeCommunityId());
 		
 		String cpr = documentEntry.getPatientId().getId();
 		String entryUuid = documentEntry.getEntryUuid();

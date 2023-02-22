@@ -25,6 +25,8 @@ public class CdaMetadata {
 	public AvailabilityStatus availabilityStatus;
 	
 	public DocumentEntryType objectType;
+	
+	public String homeCommunityId;
 
 	public String getMimeType() {
 		return "text/xml";
@@ -85,5 +87,13 @@ public class CdaMetadata {
 
 	public void setObjectType(DocumentEntryType objectType) {
 		this.objectType = objectType;
+	}
+	
+	public String getHomeCommunityId() {
+		return homeCommunityId;
+	}
+
+	public void setHomeCommunityId(String homeCommunityId) {
+		this.homeCommunityId = homeCommunityId;
 	}
 }

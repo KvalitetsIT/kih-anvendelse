@@ -23,6 +23,7 @@ public class CdaMetaDataFactory {
 			documentMetadata.setObjectType(cdaMetadata.getObjectType());
 			documentMetadata.setPracticeSettingCode(cdaMetadata.getPracticeSettingCode());
 			documentMetadata.setSubmissionTime(cdaMetadata.getSubmissionTime());
+			documentMetadata.setHomeCommunityId(cdaMetadata.getHomeCommunityId());
 		}
 		
 		getMetadataFromDocument(documentMetadata, document);

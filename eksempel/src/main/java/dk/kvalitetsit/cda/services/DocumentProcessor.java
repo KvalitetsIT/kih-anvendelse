@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.openehealth.ipf.commons.ihe.xds.core.metadata.DocumentEntry;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import dk.kvalitetsit.cda.configuration.PatientContext;
 import dk.kvalitetsit.cda.document.DocumentHelper;
@@ -22,6 +23,10 @@ public class DocumentProcessor {
 	
 	@Autowired
 	CdaMetaDataFactory cdaMetaDataFactory;
+	
+	@Value("${xds.homecommunityid}")
+	String homeCommunityId;
+
 	
 	public void runCDADocument(DocumentHelper documentHelper) throws Exception {
 		
@@ -48,7 +53,7 @@ public class DocumentProcessor {
 		String xmlDocument = documentHelper.createDocumentAsXML(externalIdForNewDocument, from, to);
 
 		// Create metadata using builder/parser  and based on document standard metadata
-		DocumentMetadata documentMetadata = cdaMetaDataFactory.getMetadata(documentHelper.createCdaMetadata(), xmlDocument);
+		DocumentMetadata documentMetadata = cdaMetaDataFactory.getMetadata(documentHelper.createCdaMetadata(homeCommunityId), xmlDocument);
 		
 		// Register the documement
 		String documentIdNew = xdsRequestService.createAndRegisterDocument(xmlDocument , documentMetadata);
@@ -63,14 +68,14 @@ public class DocumentProcessor {
 		// READ ---------------------------------------------------------------------------------------- //
 		
 		// get the document
-		String homeCommunityId = null; 
-		String repositoryId = null;
+		String homeCommunityIdRead = null; 
+		String repositoryIdRead = null;
 		if (documentIsInList) {
 			DocumentEntry documentEntry = getDocumentInList(documentIdNew, currentDocumentsAfterNew);
-			homeCommunityId = documentEntry.getHomeCommunityId();
-			repositoryId = documentEntry.getRepositoryUniqueId();
+			homeCommunityIdRead = documentEntry.getHomeCommunityId();
+			repositoryIdRead = documentEntry.getRepositoryUniqueId();
 		}
-		String document = xdsRequestService.fetchDocument(documentIdNew, homeCommunityId, repositoryId);
+		String document = xdsRequestService.fetchDocument(documentIdNew, homeCommunityIdRead, repositoryIdRead);
 		
 		
 		// read the xml into an cdaDocument format with the builder/parser and fetch the effectiveTime
@@ -93,7 +98,7 @@ public class DocumentProcessor {
 		xmlDocument = documentHelper.createDocumentAsXML(externalIdForUpdatedDocument, updatedFrom, updatedTo);
 
 		// Create metadata using builder/parser and based on document standard metadata
-		DocumentMetadata updatedDocumentMetadata = cdaMetaDataFactory.getMetadata(documentHelper.createCdaMetadata(), xmlDocument);
+		DocumentMetadata updatedDocumentMetadata = cdaMetaDataFactory.getMetadata(documentHelper.createCdaMetadata(homeCommunityId), xmlDocument);
 		
 		// Get the document entryUUid for the one to be updated
 		DocumentEntry toBeUpdated = xdsRequestService.getDocumentEntry(documentIdNew);		

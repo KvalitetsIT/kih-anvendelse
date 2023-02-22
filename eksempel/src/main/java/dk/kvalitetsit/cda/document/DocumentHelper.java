@@ -15,5 +15,5 @@ public interface DocumentHelper {
 	public String createDocumentAsXML(String externalIdForNewDocument, Date from, Date to) throws ParserException;
 	public Date getDocumentEffectiveTimeFromXML(String document);
 	public Code getDocumentTypeCode();
-	public CdaMetadata createCdaMetadata();
+	public CdaMetadata createCdaMetadata(String homeCommunityId);
 }
