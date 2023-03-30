@@ -184,14 +184,14 @@ I java eksemplet er "kih test" server sat op (den første i listen nedenfor). De
 |                | iti18.endpoint     | http://test1-cnsp.ekstern-test.nspop.dk:8080/ddsregistry                     |    |
 |                | iti57.endpoint     | https://test1-cnsp.ekstern-test.nspop.dk:8443/dros/iti57                     |    |
 |                | iti43.endpoint     | http://test1-cnsp.ekstern-test.nspop.dk:8080/ddsrepository                   |    |
-|                | iti41.endpoint     | http://test1-cnsp.ekstern-test.nspop.dk:8080/drs/proxy                       |    |
+|                | iti41.endpoint     | https://test1-cnsp.ekstern-test.nspop.dk:8443/dros/iti41                     |    |
 |                | sts.url (dgws)     | http://test1.ekstern-test.nspop.dk:8080/sts/services/NewSecurityTokenService |    |
 |                | cda viewer         | https://cdaviewer.medcom.dk/cdaviewer-test1/                                 | *1 |
 | Test 2         | repositoryuniqueid | 1.2.208.176.43210.8.20.11 	                                             |    |
 |                | iti18.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsregistry                     |    |
 |                | iti57.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/dros/iti57                     |    |
 |                | iti43.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/ddsrepository                   |    |
-|                | iti41.endpoint     | http://test2-cnsp.ekstern-test.nspop.dk:8080/drs/proxy     	             |    |
+|                | iti41.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/dros/iti41     	             |    |
 |                | sts.url (dgws)     | http://test2.ekstern-test.nspop.dk:8080/sts/services/NewSecurityTokenService |    |
 |                | cda viewer         | https://cdaviewer.medcom.dk/cdaviewer-test2/                                 | *1 |
 | KIH prod       | repositoryuniqueid | 1.2.208.176.8.1.30                                                           |    |
