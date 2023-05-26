@@ -170,6 +170,12 @@
 		<dependency>
 			<groupId>dk.s4.hl7</groupId>
 			<artifactId>builders</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>com.fasterxml.woodstox</groupId>
+					<artifactId>woodstox-core</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		
 		<!-- dgws dependencies -->

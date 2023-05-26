@@ -21,6 +21,8 @@ import dk.s4.hl7.cda.model.qfdd.QFDDDocument;
 import dk.s4.hl7.cda.model.qfdd.QFDDFeedback.QFDDFeedbackBuilder;
 import dk.s4.hl7.cda.model.qfdd.QFDDHelpText.QFDDHelpTextBuilder;
 import dk.s4.hl7.cda.model.qfdd.QFDDMultipleChoiceQuestion.QFDDMultipleChoiceQuestionBuilder;
+import dk.s4.hl7.cda.model.qfdd.QFDDOrganizer;
+import dk.s4.hl7.cda.model.qfdd.QFDDOrganizer.QFDDOrganizerBuilder;
 import dk.s4.hl7.cda.model.qfdd.QFDDPrecondition;
 import dk.s4.hl7.cda.model.qfdd.QFDDPrecondition.QFDDPreconditionBuilder;
 import dk.s4.hl7.cda.model.qfdd.QFDDQuestion;
@@ -39,9 +41,8 @@ public class DocumentFactoryQFDD {
 				+ "Vi bruger blandt andet dine svar til at vurdere, om du har brug for en konsultation. <br/>"
 				+ "Hvornår havde du dit seneste anfald?";
 
-		Section<QFDDQuestion> section = new Section<QFDDQuestion>("Indledning", text);
-		section.addQuestionnaireEntity(simpleQuestionMultipleChoice());
-		section.addQuestionnaireEntity(fullQuestionMultipleChoice(true, simplePrecondition()));
+		Section<QFDDOrganizer> section = new Section<QFDDOrganizer>("Indledning", text);
+		section.addOrganizer(new QFDDOrganizerBuilder().addQFDDQuestion(simpleQuestionMultipleChoice()).addQFDDQuestion(fullQuestionMultipleChoice(true, simplePrecondition())).build());
 		cda.addSection(section);
 
 		return cda;

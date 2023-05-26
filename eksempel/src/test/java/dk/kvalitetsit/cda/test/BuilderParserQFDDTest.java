@@ -54,11 +54,11 @@ public class BuilderParserQFDDTest {
 		assertNotNull(qfddDocument.getSections().get(0).getSectionInformation());
 		assertNotNull(qfddDocument.getSections().get(0).getSectionInformation().getTitle());
 		assertEquals("Indledning", qfddDocument.getSections().get(0).getSectionInformation().getTitle());
-		assertNotNull(qfddDocument.getSections().get(0).getQuestionnaireEntities());
-		assertEquals(2, qfddDocument.getSections().get(0).getQuestionnaireEntities().size());
-		assertNotNull(qfddDocument.getSections().get(0).getQuestionnaireEntities().get(0));
-		assertNotNull(qfddDocument.getSections().get(0).getQuestionnaireEntities().get(0).getQuestion());
-		assertEquals("question", qfddDocument.getSections().get(0).getQuestionnaireEntities().get(0).getQuestion());
+		assertNotNull(qfddDocument.getSections().get(0).getOrganizers());
+		assertEquals(2, qfddDocument.getSections().get(0).getOrganizers().get(0).getQFDDQuestions().size());
+		assertNotNull(qfddDocument.getSections().get(0).getOrganizers().get(0).getQFDDQuestions().get(0));
+		assertNotNull(qfddDocument.getSections().get(0).getOrganizers().get(0).getQFDDQuestions().get(0).getQuestion());
+		assertEquals("question", qfddDocument.getSections().get(0).getOrganizers().get(0).getQFDDQuestions().get(0).getQuestion());
 				
 	}
 	
@@ -104,11 +104,11 @@ public class BuilderParserQFDDTest {
 		assertNotNull(qfddDocumentParsed.getSections().get(0).getSectionInformation());
 		assertNotNull(qfddDocumentParsed.getSections().get(0).getSectionInformation().getTitle());
 		assertEquals("Indledning", qfddDocumentParsed.getSections().get(0).getSectionInformation().getTitle());
-		assertNotNull(qfddDocumentParsed.getSections().get(0).getQuestionnaireEntities());
-		assertEquals(2, qfddDocumentParsed.getSections().get(0).getQuestionnaireEntities().size());
-		assertNotNull(qfddDocumentParsed.getSections().get(0).getQuestionnaireEntities().get(0));
-		assertNotNull(qfddDocumentParsed.getSections().get(0).getQuestionnaireEntities().get(0).getQuestion());
-		assertEquals("question", qfddDocumentParsed.getSections().get(0).getQuestionnaireEntities().get(0).getQuestion());
+		assertNotNull(qfddDocument.getSections().get(0).getOrganizers());
+		assertEquals(2, qfddDocument.getSections().get(0).getOrganizers().get(0).getQFDDQuestions().size());
+		assertNotNull(qfddDocument.getSections().get(0).getOrganizers().get(0).getQFDDQuestions().get(0));
+		assertNotNull(qfddDocument.getSections().get(0).getOrganizers().get(0).getQFDDQuestions().get(0).getQuestion());
+		assertEquals("question", qfddDocument.getSections().get(0).getOrganizers().get(0).getQFDDQuestions().get(0).getQuestion());
 			
 	}
 

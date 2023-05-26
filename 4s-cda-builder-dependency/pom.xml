@@ -41,7 +41,7 @@
 				<artifactId>maven-install-plugin</artifactId>
 <!-- 				<version>2.5.2</version> -->
 				<configuration>
-					<file>target/checkout/4s-cda-builders/target/builders-2.2.2.jar</file>
+					<file>target/checkout/4s-cda-builders/target/builders-${cda-builder-version}.jar</file>
 					<groupId>dk.s4.hl7</groupId>
 					<artifactId>builders</artifactId>
 					<packaging>jar</packaging>
