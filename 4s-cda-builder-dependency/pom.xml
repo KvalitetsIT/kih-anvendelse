@@ -20,7 +20,7 @@
 				<version>1.10.0</version>
 				<configuration>
 					<skipCheckoutIfExists>true</skipCheckoutIfExists>
-					<goals>install</goals>
+					<goals>install -DskipTests=true -Dmaven.javadoc.skip=true</goals>
 					<goalsDirectory>4s-cda-builders</goalsDirectory>
 					<connectionType>developerConnection</connectionType>
 					<scmVersion>${cda-builder-version}</scmVersion>

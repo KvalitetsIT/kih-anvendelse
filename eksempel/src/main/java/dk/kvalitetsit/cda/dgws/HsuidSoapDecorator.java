@@ -31,17 +31,17 @@ public class HsuidSoapDecorator extends DgwsSoapDecorator {
 		super.handleMessage(message);
 		try {
 			// HsuidHeader
-			Header hsUidHeader = getHsuid("nsi:HealthcareProfessional", "system owner", "test document", "1.0", "MyOrganisation", "test");
+			Header hsUidHeader = getHsuid(UserTypeAttribute.HEALTHCAREPROFESSIONAL, "system owner", "test document", "1.0", "MyOrganisation", "test");
 			message.getHeaders().add(hsUidHeader);
 		} catch (JAXBException | ParserConfigurationException e) {
 			throw new Fault(e);
 		}
 	}
 
-	private Header getHsuid(String isCitizen, String systemOwner, String systemName, String systemVersion, String responsibleOrg, String issuer) throws JAXBException, ParserConfigurationException {
+	private Header getHsuid(UserTypeAttribute userTypeAttribute, String systemOwner, String systemName, String systemVersion, String responsibleOrg, String issuer) throws JAXBException, ParserConfigurationException {
 		List<Attribute> attributes = new ArrayList<Attribute>();
 		attributes.add(new CitizenCivilRegistrationNumberAttribute(dgwsContext.getPatientContext().getPatientId()));
-		attributes.add(new UserTypeAttribute(isCitizen));
+		attributes.add(userTypeAttribute);
 		attributes.add(new ActingUserCivilRegistrationNumberAttribute(dgwsContext.getUserCivilRegistrationNumber()));
 		attributes.add(new OrganisationIdentifierAttribute("25450442", SubjectIdentifierType.NSI_SORCODE.toString()));
 		attributes.add(new SystemVendorNameAttribute(systemOwner));
