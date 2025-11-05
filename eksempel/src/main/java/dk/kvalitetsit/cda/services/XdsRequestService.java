@@ -17,23 +17,19 @@ import org.apache.cxf.frontend.ClientProxy;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.phase.AbstractPhaseInterceptor;
 import org.openehealth.ipf.commons.ihe.xds.core.ebxml.EbXMLFactory;
-import org.openehealth.ipf.commons.ihe.xds.core.ebxml.ebxml30.EbXMLFactory30;
-import org.openehealth.ipf.commons.ihe.xds.core.ebxml.ebxml30.EbXMLQueryResponse30;
-import org.openehealth.ipf.commons.ihe.xds.core.ebxml.ebxml30.ProvideAndRegisterDocumentSetRequestType;
-import org.openehealth.ipf.commons.ihe.xds.core.ebxml.ebxml30.RetrieveDocumentSetRequestType;
-import org.openehealth.ipf.commons.ihe.xds.core.ebxml.ebxml30.RetrieveDocumentSetResponseType;
+import org.openehealth.ipf.commons.ihe.xds.core.ebxml.ebxml30.*;
 import org.openehealth.ipf.commons.ihe.xds.core.ebxml.ebxml30.RetrieveDocumentSetResponseType.DocumentResponse;
 import org.openehealth.ipf.commons.ihe.xds.core.metadata.Code;
 import org.openehealth.ipf.commons.ihe.xds.core.metadata.DocumentEntry;
 import org.openehealth.ipf.commons.ihe.xds.core.requests.query.QueryReturnType;
-import org.openehealth.ipf.commons.ihe.xds.core.responses.QueryResponse;
-import org.openehealth.ipf.commons.ihe.xds.core.responses.Status;
+import org.openehealth.ipf.commons.ihe.xds.core.responses.*;
 import org.openehealth.ipf.commons.ihe.xds.core.stub.ebrs30.lcm.SubmitObjectsRequest;
 import org.openehealth.ipf.commons.ihe.xds.core.stub.ebrs30.query.AdhocQueryRequest;
 import org.openehealth.ipf.commons.ihe.xds.core.stub.ebrs30.query.AdhocQueryResponse;
 import org.openehealth.ipf.commons.ihe.xds.core.stub.ebrs30.rs.RegistryError;
 import org.openehealth.ipf.commons.ihe.xds.core.stub.ebrs30.rs.RegistryResponseType;
 import org.openehealth.ipf.commons.ihe.xds.core.transform.responses.QueryResponseTransformer;
+import org.openehealth.ipf.commons.ihe.xds.core.transform.responses.ResponseTransformer;
 import org.openehealth.ipf.commons.ihe.xds.iti18.Iti18PortType;
 import org.openehealth.ipf.commons.ihe.xds.iti41.Iti41PortType;
 import org.openehealth.ipf.commons.ihe.xds.iti43.Iti43PortType;
@@ -156,34 +152,39 @@ public class XdsRequestService {
 		return documentResult.get(documentId);
 	}
 
-
-
-
-	public String createAndRegisterDocumentAsReplacement(String updatedXmlDocument, DocumentMetadata updatedCdaMetadata, String externalIdForDocumentToReplace) throws XdsException {
-		ProvideAndRegisterDocumentSetRequestType provideAndRegisterDocumentSetRequest = xdsRequestBuilderService.buildProvideAndRegisterDocumentSetRequestWithReplacement(updatedXmlDocument, updatedCdaMetadata, externalIdForDocumentToReplace);
-		RegistryResponseType registryResponse = iti41PortType.documentRepositoryProvideAndRegisterDocumentSetB(provideAndRegisterDocumentSetRequest);
-		if (registryResponse.getRegistryErrorList() == null || registryResponse.getRegistryErrorList().getRegistryError() == null || registryResponse.getRegistryErrorList().getRegistryError().isEmpty()) {
-			return updatedCdaMetadata.getUniqueId();
-		} else {
-			XdsException e = new XdsException();
-			for (RegistryError registryError :registryResponse.getRegistryErrorList().getRegistryError()) {
-				e.addError(registryError.getCodeContext());
-			}
-			throw e;
-		}
+	public String createAndRegisterDocument(String document, DocumentMetadata documentMetadata) throws XdsException {
+		return createAndRegisterDocument(document, documentMetadata, null);
 	}
 
-
-	public String createAndRegisterDocument(String document, DocumentMetadata documentMetadata) throws XdsException {
-		ProvideAndRegisterDocumentSetRequestType provideAndRegisterDocumentSetRequest = xdsRequestBuilderService.buildProvideAndRegisterDocumentSetRequest(document, documentMetadata);
+	public String createAndRegisterDocument(String document, DocumentMetadata documentMetadata, String externalIdForDocumentToReplace) throws XdsException {
+		ProvideAndRegisterDocumentSetRequestType provideAndRegisterDocumentSetRequest = xdsRequestBuilderService.buildProvideAndRegisterDocumentSetRequest(document, documentMetadata, null);
 		RegistryResponseType registryResponse = iti41PortType.documentRepositoryProvideAndRegisterDocumentSetB(provideAndRegisterDocumentSetRequest);
-		if (registryResponse.getRegistryErrorList() == null || registryResponse.getRegistryErrorList().getRegistryError() == null || registryResponse.getRegistryErrorList().getRegistryError().isEmpty()) {
+
+		ResponseTransformer responseTransformer = new ResponseTransformer(getEbXmlFactory());
+		EbXMLRegistryResponse30 ebxml = new EbXMLRegistryResponse30(registryResponse);
+		Response response = responseTransformer.fromEbXML(ebxml);
+
+		// log warnings
+		if (response.getErrors() != null && response.getErrors().size() > 0) {
+			for (ErrorInfo registryError : response.getErrors()) {
+				if (!Severity.ERROR.equals(registryError.getSeverity())) {
+					System.out.println("Warning: " + registryError.getCodeContext());
+				}
+			}
+		}
+
+		if (response.getStatus() == Status.SUCCESS) {
 			return documentMetadata.getUniqueId();
 		} else {
 			XdsException e = new XdsException();
-			for (RegistryError registryError :registryResponse.getRegistryErrorList().getRegistryError()) {
-				e.addError(registryError.getCodeContext());
+			if (response.getErrors() != null) {
+				for (ErrorInfo registryError : response.getErrors()) {
+					if (Severity.ERROR.equals(registryError.getSeverity())) {
+						e.addError(registryError.getCodeContext());
+					}
+				}
 			}
+
 			throw e;
 		}
 	}

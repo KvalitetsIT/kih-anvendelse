@@ -104,7 +104,7 @@ public class DocumentProcessor {
 		DocumentEntry toBeUpdated = xdsRequestService.getDocumentEntry(documentIdNew);		
 		
 		// Update the documement by registering the new document as a replacement
-		String documentIdUpdated = xdsRequestService.createAndRegisterDocumentAsReplacement(xmlDocument, updatedDocumentMetadata, toBeUpdated.getEntryUuid());
+		String documentIdUpdated = xdsRequestService.createAndRegisterDocument(xmlDocument, updatedDocumentMetadata, toBeUpdated.getEntryUuid());
 		System.out.println("We registered a replacement document with documentId="+documentIdUpdated);
 		
 		// Search document for patient (we assume there is the same number as before)

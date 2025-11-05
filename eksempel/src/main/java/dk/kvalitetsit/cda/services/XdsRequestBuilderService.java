@@ -75,15 +75,6 @@ public class XdsRequestBuilderService {
 	@Autowired
 	PatientIdAuthority patientIdAuthority;
 	
-	public ProvideAndRegisterDocumentSetRequestType buildProvideAndRegisterDocumentSetRequestWithReplacement(String updatedXmlDocument, DocumentMetadata updatedCdaMetadata, String externalIdForDocumentToReplace) {
-		return buildProvideAndRegisterDocumentSetRequest(updatedXmlDocument, updatedCdaMetadata, externalIdForDocumentToReplace);
-	}
-
-	public ProvideAndRegisterDocumentSetRequestType buildProvideAndRegisterDocumentSetRequest(String documentPayload, DocumentMetadata documentMetadata) {
-		return buildProvideAndRegisterDocumentSetRequest(documentPayload, documentMetadata, null);
-	}
-
-
 	public ProvideAndRegisterDocumentSetRequestType buildProvideAndRegisterDocumentSetRequest(String documentPayload, DocumentMetadata documentMetadata, String externalIdForDocumentToReplace) {
 
 		ProvideAndRegisterDocumentSet provideAndRegisterDocumentSet = new ProvideAndRegisterDocumentSet();
