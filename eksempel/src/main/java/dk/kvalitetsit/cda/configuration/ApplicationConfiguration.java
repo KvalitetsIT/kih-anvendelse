@@ -1,10 +1,16 @@
 package dk.kvalitetsit.cda.configuration;
 
 import java.security.cert.X509Certificate;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import javax.xml.namespace.QName;
+import javax.xml.ws.BindingProvider;
+import javax.xml.ws.handler.MessageContext;
 
 import org.apache.cxf.configuration.jsse.TLSClientParameters;
 import org.apache.cxf.endpoint.Client;
@@ -92,7 +98,8 @@ public class ApplicationConfiguration {
 		XdsClientFactory xdsClientFactory = generateXdsRegistryClientFactory(xdsIti18Wsdl, xdsIti18Endpoint, Iti18PortType.class);
 		Iti18PortType client = (Iti18PortType) xdsClientFactory.getClient();
 
-		initProxy(client);	
+		initProxy(client);
+		setSoapActionHeader((BindingProvider) client, "urn:ihe:iti:2007:RegistryStoredQuery");
 
 		return client;
 	}
@@ -104,7 +111,8 @@ public class ApplicationConfiguration {
 		XdsClientFactory xdsClientFactory = generateXdsRepositoryClientFactory(xdsIti41Wsdl, xdsIti41Endpoint, Iti41PortType.class);
 		Iti41PortType client = (Iti41PortType) xdsClientFactory.getClient();
 
-		initProxy(client);	
+		initProxy(client);
+		setSoapActionHeader((BindingProvider) client, "urn:ihe:iti:2007:ProvideAndRegisterDocumentSet-b");
 
 		return client;
 	}
@@ -116,7 +124,8 @@ public class ApplicationConfiguration {
 		XdsClientFactory xdsClientFactory = generateXdsRepositoryClientFactory(xdsIti43Wsdl, xdsIti43Endpoint, Iti43PortType.class);
 		Iti43PortType client = (Iti43PortType) xdsClientFactory.getClient();
 		
-		initProxy(client);	
+		initProxy(client);
+		setSoapActionHeader((BindingProvider) client, "urn:ihe:iti:2007:RetrieveDocumentSet");
 
 		return client;
 	}
@@ -128,7 +137,8 @@ public class ApplicationConfiguration {
 		XdsClientFactory xdsClientFactory = generateXdsRegistryClientFactory("urn:ihe:iti:xds-b:2010", xdsIti57Wsdl, xdsIti57Endpoint, Iti57PortType.class);
 		Iti57PortType client = (Iti57PortType) xdsClientFactory.getClient();
 
-		initProxy(client);	
+		initProxy(client);
+		setSoapActionHeader((BindingProvider) client, "urn:ihe:iti:2010:UpdateDocumentSet");
 
 		return client;
 	}
@@ -172,6 +182,14 @@ public class ApplicationConfiguration {
 		TLSClientParameters tcp = new TLSClientParameters();
 		tcp.setTrustManagers(trustAllCerts);
 		conduit.setTlsClientParameters(tcp);
+	}
+	private void setSoapActionHeader(BindingProvider bindingProvider, String soapActionValue) {
+		Map<String, List<String>> headers = (Map<String, List<String>>) bindingProvider.getRequestContext().get(MessageContext.HTTP_REQUEST_HEADERS);
+		if (headers == null) {
+			headers = new HashMap<>();
+		}
+		headers.put("SOAPAction", Collections.singletonList(soapActionValue));
+		bindingProvider.getRequestContext().put(MessageContext.HTTP_REQUEST_HEADERS, headers);
 	}
 
 	@Bean
