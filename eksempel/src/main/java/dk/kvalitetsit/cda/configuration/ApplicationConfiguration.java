@@ -98,7 +98,8 @@ public class ApplicationConfiguration {
 		XdsClientFactory xdsClientFactory = generateXdsRegistryClientFactory(xdsIti18Wsdl, xdsIti18Endpoint, Iti18PortType.class);
 		Iti18PortType client = (Iti18PortType) xdsClientFactory.getClient();
 
-		initProxy(client);	
+		initProxy(client);
+		setSoapActionHeader((BindingProvider) client, "urn:ihe:iti:2007:RegistryStoredQuery");
 
 		return client;
 	}
@@ -123,7 +124,8 @@ public class ApplicationConfiguration {
 		XdsClientFactory xdsClientFactory = generateXdsRepositoryClientFactory(xdsIti43Wsdl, xdsIti43Endpoint, Iti43PortType.class);
 		Iti43PortType client = (Iti43PortType) xdsClientFactory.getClient();
 		
-		initProxy(client);	
+		initProxy(client);
+		setSoapActionHeader((BindingProvider) client, "urn:ihe:iti:2007:RetrieveDocumentSet");
 
 		return client;
 	}
