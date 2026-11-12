@@ -165,42 +165,42 @@ I java eksemplet er "kih test" server sat op (den første i listen nedenfor). De
 
 Ved kald til nspop skal DCCen (Decoupling component) kaldes. Derfor er det disse endpoints, der fremgår af nedenstående. Her skal der også kaldes med en httpheader, som angiver korrekt SOAPAction. Denne er angivet i tabellen.
 
-| Server         | Type               | Endpoint/Værdi                                                               | SOAPAction                                       | NB |
-|----------------|--------------------|------------------------------------------------------------------------------|--------------------------------------------------|----| 
-| KIH test       | repositoryuniqueid | 1.2.208.176.43210.8.1.29                                                     |                                                  |    |
-|                | iti18.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling                     | urn:ihe:iti:2007:RegistryStoredQuery             |    |
-|                | iti57.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling/nspservices/aftaler | urn:ihe:iti:2007:RegisterDocumentSet-b           |    |
-|                | iti43.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling                     | urn:ihe:iti:2007:RetrieveDocumentSet             |    |
-|                | iti41.endpoint     | https://kih.test.xdsrepositoryb.medcom.dk/kih-iti41/iti41                    |                                                  |    |
-|                | sts.url (dgws)     | http://test2.ekstern-test.nspop.dk:8080/sts/services/NewSecurityTokenService |                                                  |    |
-|                | XDS Portal         | https://xdsportal.medcom.dk/xdsportal-test2/                                 |                                                  | *1 |
-| KIH uddannelse | repositoryuniqueid | 1.2.208.176.43210.8.1.31                                                     |                                                  |    |
-|                | iti18.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling                     | urn:ihe:iti:2007:RegistryStoredQuery             |    |
-|                | iti57.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling/nspservices/aftaler | urn:ihe:iti:2007:RegisterDocumentSet-b           |    |
-|                | iti43.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling                     | urn:ihe:iti:2007:RetrieveDocumentSet             |    |
-|                | iti41.endpoint     | http://kihrepository-sec-udd-npi-nsi.rn.dsdn.dk:8022/kih-iti41/iti41         |                                                  | *2 |
-|                | sts.url (dgws)     | http://test2.ekstern-test.nspop.dk:8080/sts/services/NewSecurityTokenService |                                                  |    |
-|                | XDS Portal         | https://xdsportal.medcom.dk/xdsportal-test2/                                 |                                                  | *1 |
-| Test 1 aftaler | repositoryuniqueid | 1.2.208.176.43210.8.10.11                                                    |                                                  |    |
-|                | iti18.endpoint     | https://test1-cnsp.ekstern-test.nspop.dk:8443/decoupling                     | urn:ihe:iti:2007:RegistryStoredQuery             |    |
-|                | iti57.endpoint     | https://test1-cnsp.ekstern-test.nspop.dk:8443/decoupling/nspservices/aftaler | urn:ihe:iti:2007:RegisterDocumentSet-b           |    |
-|                | iti43.endpoint     | https://test1-cnsp.ekstern-test.nspop.dk:8443/decoupling                     | urn:ihe:iti:2007:RetrieveDocumentSet             |    |
-|                | iti41.endpoint     | https://test1-cnsp.ekstern-test.nspop.dk:8443/decoupling/nspservices/aftaler | urn:ihe:iti:2007:ProvideAndRegisterDocumentSet-b |    |
-|                | sts.url (dgws)     | http://test1.ekstern-test.nspop.dk:8080/sts/services/NewSecurityTokenService |                                                  |    |
-|                | XDS Portal         | https://xdsportal.medcom.dk/xdsportal-test1/                                 |                                                  | *1 |
-| Test 2 aftaler | repositoryuniqueid | 1.2.208.176.43210.8.20.11                                                    |                                                  |    |
-|                | iti18.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling                     | urn:ihe:iti:2007:RegistryStoredQuery             |    |
-|                | iti57.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling/nspservices/aftaler | urn:ihe:iti:2007:RegisterDocumentSet-b           |    |
-|                | iti43.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling                     | urn:ihe:iti:2007:RetrieveDocumentSet             |    |
-|                | iti41.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling/nspservices/aftaler | urn:ihe:iti:2007:ProvideAndRegisterDocumentSet-b |    |
-|                | sts.url (dgws)     | http://test2.ekstern-test.nspop.dk:8080/sts/services/NewSecurityTokenService |                                                  |    |
-|                | XDS Portal         | https://xdsportal.medcom.dk/xdsportal-test2/                                 |                                                  | *1 |
-| KIH prod       | repositoryuniqueid | 1.2.208.176.8.1.30                                                           |                                                  |    |
-|                | iti18.endpoint     | kontakt Medcom/SDS                                                           | urn:ihe:iti:2007:RegistryStoredQuery             |    |
-|                | iti57.endpoint     | kontakt Medcom/SDS                                                           | urn:ihe:iti:2007:RegisterDocumentSet-b           |    |
-|                | iti43.endpoint     | kontakt Medcom/SDS                                                           | urn:ihe:iti:2007:RetrieveDocumentSet             |    |
-|                | iti41.endpoint     | https://kihrepository-sec-npi-nsi.rn.dsdn.dk:8022/kih-iti41/iti41            |                                                  | *2 |
-|                | sts.url (dgws)     | kontakt Medcom/SDS                                                           |                                                  |    |
+| Server         | Type               | Endpoint/Værdi                                                                | SOAPAction                                       | NB |
+|----------------|--------------------|-------------------------------------------------------------------------------|--------------------------------------------------|----| 
+| KIH test       | repositoryuniqueid | 1.2.208.176.43210.8.1.29                                                      |                                                  |    |
+|                | iti18.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling                      | urn:ihe:iti:2007:RegistryStoredQuery             |    |
+|                | iti57.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling/nspservices/aftaler  | urn:ihe:iti:2007:RegisterDocumentSet-b           |    |
+|                | iti43.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling                      | urn:ihe:iti:2007:RetrieveDocumentSet             |    |
+|                | iti41.endpoint     | https://kih.test.xdsrepositoryb.medcom.dk/kih-iti41/iti41                     |                                                  |    |
+|                | sts.url (dgws)     | https://test2.ekstern-test.nspop.dk:8443/sts/services/NewSecurityTokenService |                                                  |    |
+|                | XDS Portal         | https://xdsportal.medcom.dk/xdsportal-test2/                                  |                                                  | *1 |
+| KIH uddannelse | repositoryuniqueid | 1.2.208.176.43210.8.1.31                                                      |                                                  |    |
+|                | iti18.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling                      | urn:ihe:iti:2007:RegistryStoredQuery             |    |
+|                | iti57.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling/nspservices/aftaler  | urn:ihe:iti:2007:RegisterDocumentSet-b           |    |
+|                | iti43.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling                      | urn:ihe:iti:2007:RetrieveDocumentSet             |    |
+|                | iti41.endpoint     | http://kihrepository-sec-udd-npi-nsi.rn.dsdn.dk:8022/kih-iti41/iti41          |                                                  | *2 |
+|                | sts.url (dgws)     | https://test2.ekstern-test.nspop.dk:8443/sts/services/NewSecurityTokenService |                                                  |    |
+|                | XDS Portal         | https://xdsportal.medcom.dk/xdsportal-test2/                                  |                                                  | *1 |
+| Test 1 aftaler | repositoryuniqueid | 1.2.208.176.43210.8.10.11                                                     |                                                  |    |
+|                | iti18.endpoint     | https://test1-cnsp.ekstern-test.nspop.dk:8443/decoupling                      | urn:ihe:iti:2007:RegistryStoredQuery             |    |
+|                | iti57.endpoint     | https://test1-cnsp.ekstern-test.nspop.dk:8443/decoupling/nspservices/aftaler  | urn:ihe:iti:2007:RegisterDocumentSet-b           |    |
+|                | iti43.endpoint     | https://test1-cnsp.ekstern-test.nspop.dk:8443/decoupling                      | urn:ihe:iti:2007:RetrieveDocumentSet             |    |
+|                | iti41.endpoint     | https://test1-cnsp.ekstern-test.nspop.dk:8443/decoupling/nspservices/aftaler  | urn:ihe:iti:2007:ProvideAndRegisterDocumentSet-b |    |
+|                | sts.url (dgws)     | https://test1.ekstern-test.nspop.dk:8443/sts/services/NewSecurityTokenService |                                                  |    |
+|                | XDS Portal         | https://xdsportal.medcom.dk/xdsportal-test1/                                  |                                                  | *1 |
+| Test 2 aftaler | repositoryuniqueid | 1.2.208.176.43210.8.20.11                                                     |                                                  |    |
+|                | iti18.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling                      | urn:ihe:iti:2007:RegistryStoredQuery             |    |
+|                | iti57.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling/nspservices/aftaler  | urn:ihe:iti:2007:RegisterDocumentSet-b           |    |
+|                | iti43.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling                      | urn:ihe:iti:2007:RetrieveDocumentSet             |    |
+|                | iti41.endpoint     | https://test2-cnsp.ekstern-test.nspop.dk:8443/decoupling/nspservices/aftaler  | urn:ihe:iti:2007:ProvideAndRegisterDocumentSet-b |    |
+|                | sts.url (dgws)     | https://test2.ekstern-test.nspop.dk:8443/sts/services/NewSecurityTokenService |                                                  |    |
+|                | XDS Portal         | https://xdsportal.medcom.dk/xdsportal-test2/                                  |                                                  | *1 |
+| KIH prod       | repositoryuniqueid | 1.2.208.176.8.1.30                                                            |                                                  |    |
+|                | iti18.endpoint     | kontakt Medcom/SDS                                                            | urn:ihe:iti:2007:RegistryStoredQuery             |    |
+|                | iti57.endpoint     | kontakt Medcom/SDS                                                            | urn:ihe:iti:2007:RegisterDocumentSet-b           |    |
+|                | iti43.endpoint     | kontakt Medcom/SDS                                                            | urn:ihe:iti:2007:RetrieveDocumentSet             |    |
+|                | iti41.endpoint     | https://kihrepository-sec-npi-nsi.rn.dsdn.dk:8022/kih-iti41/iti41             |                                                  | *2 |
+|                | sts.url (dgws)     | kontakt Medcom/SDS                                                            |                                                  |    |
 
 *1: kræver login
 *2: kræver SDN aftale 
